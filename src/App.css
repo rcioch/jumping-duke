@@ -5,6 +5,17 @@
   text-align: center;
 }
 
-.read-the-docs {
+.title {
+    color: #888;
+    padding: 0;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.link {
   color: #888;
+  padding-bottom: 2rem;
 }
