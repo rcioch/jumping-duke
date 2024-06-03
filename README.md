@@ -16,5 +16,5 @@ The game was my very loose attempt at the ZX Spectrum's game [Jumping Jack](http
 
 Original source code here: [JumpingDuke.java](JumpingDuke.java) *(just for fun)*
 
-### Deployed on Netlify: [https://jumping-duke.netlify.app/]{https://jumping-duke.netlify.app/}
+### Deployed on Netlify: [https://jumping-duke.netlify.app/](https://jumping-duke.netlify.app/)
 (Click on the page first to enable sounds)
