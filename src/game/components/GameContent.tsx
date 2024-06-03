@@ -47,10 +47,10 @@ function GameContent() {
   if (engine) {
     return (
       <>
-        <Background engine={engine} key={`bg-${engine.level}`} />
+        <Background engine={engine} />
         <Floors engine={engine} key={counter} />
         <Duke engine={engine} />
-        <Stats engine={engine} key={`stats-${engine.level}`} />
+        <Stats engine={engine} />
       </>
     );
   }
