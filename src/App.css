@@ -5,17 +5,20 @@
   text-align: center;
 }
 
-.title {
-    color: #888;
-    padding: 0;
-}
-
 .column {
   display: flex;
   flex-direction: column;
 }
 
+.title {
+    color: #888;
+    margin: 0;
+}
+
 .link {
   color: #888;
-  padding-bottom: 2rem;
+}
+
+.manual {
+  color: #888;
 }
