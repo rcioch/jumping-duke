@@ -22,22 +22,22 @@ export class Controller {
       right: false,
     };
 
-    window.addEventListener('keydown', (event) => this.keydownHandler(event));
-    window.addEventListener('keyup', (event) => this.keyupHandler(event));
+    window.addEventListener('keydown', (event) => this.#keydownHandler(event));
+    window.addEventListener('keyup', (event) => this.#keyupHandler(event));
   }
 
   get keys() {
     return this.#keys;
   }
 
-  private keydownHandler(event: KeyboardEvent) {
+  #keydownHandler(event: KeyboardEvent) {
     const key = keyMap[event.code];
     if (key) {
       this.keys[key] = true;
     }
   }
 
-  private keyupHandler(event: KeyboardEvent) {
+  #keyupHandler(event: KeyboardEvent) {
     const key = keyMap[event.code];
     if (key) {
       this.keys[key] = false;

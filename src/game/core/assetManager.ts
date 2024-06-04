@@ -1,41 +1,12 @@
 import { Sound, sound } from '@pixi/sound';
-import { Assets, ISpritesheetData, ISpritesheetFrameData, Spritesheet, Texture, utils } from 'pixi.js';
+import { Assets, Spritesheet, Texture } from 'pixi.js';
+import { createSpriteSheet } from '@/game/core/assetHelpers';
 
 export type DukeTextures = {
   jumpTextures: Texture[];
   leftTextures: Texture[];
   rightTextures: Texture[];
 };
-
-function createSpriteSheet(tex: Texture, frameCount: number) {
-  const frameWidth = tex.width;
-  const frameHeight = Math.floor(tex.height / frameCount);
-
-  const frameList = Array(frameCount)
-    .fill(null)
-    .map((_, i) => `frame${i}`);
-
-  const frameSheet: ISpritesheetData = {
-    meta: {
-      image: tex.textureCacheIds[0],
-      size: { w: tex.width, h: tex.height },
-      scale: 1,
-    },
-    frames: frameList.reduce<utils.Dict<ISpritesheetFrameData>>((obj, frame, idx) => {
-      const item: ISpritesheetFrameData = {
-        frame: { x: 0, y: idx * frameHeight, w: frameWidth, h: frameHeight },
-        sourceSize: { w: frameWidth, h: frameHeight },
-        spriteSourceSize: { x: 0, y: 0, w: frameWidth, h: frameHeight },
-      };
-      obj[frame] = item;
-      return obj;
-    }, {}),
-    animations: {
-      frames: frameList,
-    },
-  };
-  return frameSheet;
-}
 
 const backgroundImages = ['/assets/back1.png', '/assets/back2.png', '/assets/back3.png', '/assets/back4.png'];
 const dukeSprites = ['/assets/jump.png', '/assets/flipleft.png', '/assets/flipright.png'];
@@ -62,15 +33,15 @@ export class AssetManager {
     const dukeTextures = await Assets.load(dukeSprites);
     const jumpSheet = new Spritesheet(
       dukeTextures[dukeSprites[0]],
-      createSpriteSheet(dukeTextures[dukeSprites[0]], 13)
+      createSpriteSheet(dukeTextures[dukeSprites[0]], 13),
     );
     const leftSheet = new Spritesheet(
       dukeTextures[dukeSprites[1]],
-      createSpriteSheet(dukeTextures[dukeSprites[1]], 14)
+      createSpriteSheet(dukeTextures[dukeSprites[1]], 14),
     );
     const rightSheet = new Spritesheet(
       dukeTextures[dukeSprites[2]],
-      createSpriteSheet(dukeTextures[dukeSprites[2]], 14)
+      createSpriteSheet(dukeTextures[dukeSprites[2]], 14),
     );
     await Promise.all([jumpSheet.parse(), leftSheet.parse(), rightSheet.parse()]);
     this.#dukeTextures = {

@@ -31,7 +31,7 @@ export default class Engine {
     this.#assetManager = assetManager;
     this.#textures = assetManager.dukeTextures;
     this.#floors.initLevel(this.#level);
-    this.updateDuke();
+    this.#updateDuke();
     this.#assetManager.sounds.hi.play();
   }
 
@@ -41,7 +41,7 @@ export default class Engine {
 
   update() {
     this.#floors.update();
-    this.updateDuke();
+    this.#updateDuke();
   }
 
   drawFloors(gr: Graphics) {
@@ -59,11 +59,11 @@ export default class Engine {
     return this.#dukeTexture2;
   }
 
-  private canDrop(yduke: number = this.#yduke) {
+  #canDrop(yduke: number = this.#yduke) {
     return this.#floors.canDrop(this.#xduke, yduke);
   }
 
-  private updateDuke() {
+  #updateDuke() {
     if (this.#nextLevel !== 0) {
       if (this.#nextLevel === 1) {
         this.#assetManager.sounds.jupi.play();
@@ -91,7 +91,7 @@ export default class Engine {
       }
 
       if (this.#controller.keys.up || this.#controller.keys.space)
-        if (this.canDrop(this.#yduke - 1)) {
+        if (this.#canDrop(this.#yduke - 1)) {
           this.#moveType = 'jump';
           this.#assetManager.sounds.ihop.play();
         } else {
@@ -99,7 +99,7 @@ export default class Engine {
           this.#assetManager.sounds.autsh.play();
         }
 
-      if (this.canDrop()) {
+      if (this.#canDrop()) {
         this.#moveType = 'falldown';
         this.#assetManager.sounds.falling.play();
       }
@@ -160,7 +160,7 @@ export default class Engine {
           if (this.#xduke < 0) this.#xduke += SX;
         }
 
-        if (this.canDrop()) {
+        if (this.#canDrop()) {
           this.#movePhase = 1;
           this.#moveType = 'falldown';
           this.#assetManager.sounds.falling.play();
@@ -191,7 +191,7 @@ export default class Engine {
           if (this.#xduke > SX) this.#xduke -= SX;
         }
 
-        if (this.canDrop()) {
+        if (this.#canDrop()) {
           this.#movePhase = 1;
           this.#moveType = 'falldown';
           this.#assetManager.sounds.falling.play();
@@ -204,10 +204,10 @@ export default class Engine {
 
         if (this.#movePhase === 6) {
           if (++this.#yduke === 8) this.#nextLevel = -1;
-          if (this.canDrop()) this.#movePhase = 19;
+          if (this.#canDrop()) this.#movePhase = 19;
         } else if (this.#movePhase === 23) {
           if (++this.#yduke === 8) this.#nextLevel = -1;
-          if (this.canDrop()) {
+          if (this.#canDrop()) {
             this.#movePhase = 19;
           } else {
             this.#movePhase = 6;

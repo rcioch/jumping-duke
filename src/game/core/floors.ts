@@ -44,11 +44,11 @@ export class Floors {
 
   update() {
     this.#stats = this.#stats.map<LineStat>((stat, idx) =>
-      idx % 2 === 0 ? this.scrollLeft(stat) : this.scrollRight(stat),
+      idx % 2 === 0 ? this.#scrollLeft(stat) : this.#scrollRight(stat),
     );
   }
 
-  private scrollLeft(stat: LineStat) {
+  #scrollLeft(stat: LineStat) {
     const newGaps = stat.gaps
       .map((gap) => ({
         left: gap.left - SPEED,
@@ -73,7 +73,7 @@ export class Floors {
     return newStat;
   }
 
-  private scrollRight(stat: LineStat) {
+  #scrollRight(stat: LineStat) {
     const newGaps = stat.gaps
       .map((gap) => ({
         left: gap.left + SPEED,
