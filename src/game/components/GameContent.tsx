@@ -18,7 +18,7 @@ function GameContent() {
     pixiApp.ticker.maxFPS = 30;
   });
 
-  const [counter, setCounter] = useState(0);
+  const [, setCounter] = useState(0);
   useTick(() => {
     if (engine) {
       engine.update();
@@ -48,7 +48,7 @@ function GameContent() {
     return (
       <>
         <Background engine={engine} />
-        <Floors engine={engine} key={counter} />
+        <Floors engine={engine} />
         <Duke engine={engine} />
         <Stats engine={engine} />
       </>
