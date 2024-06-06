@@ -1,6 +1,6 @@
+import { createSpriteSheet } from '@/game/core/assetHelpers';
 import { Sound, sound } from '@pixi/sound';
 import { Assets, Spritesheet, Texture } from 'pixi.js';
-import { createSpriteSheet } from '@/game/core/assetHelpers';
 
 export type DukeTextures = {
   jumpTextures: Texture[];

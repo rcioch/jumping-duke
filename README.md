@@ -4,7 +4,7 @@
 
 ## 25 Anniversary Edition
 
-It's a piece of ancient technology that I've discovered in my archives.
+It's a piece of ancient technology that I've discovered in my archives. A true blast from the past :)
 
 Because it's been 25 years since its creation, I gave it a go and ported it to modern times using the web's latest bells and whistles like React + TypeScript + PixiJS.
 

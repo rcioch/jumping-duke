@@ -1,5 +1,4 @@
-import { COLOR_DARK_GRAY, COLOR_GRAY, GRID_HEIGHT, LINE_COUNT, SPEED, SX } from '@/game/globals';
-import { Graphics } from 'pixi.js';
+import { LINE_COUNT, SPEED, SX } from '@/game/globals';
 
 const MAX_SPANS = 10;
 
@@ -16,8 +15,12 @@ type LineStat = {
 };
 
 export class Floors {
-  #stats: LineStat[] = [];
+  #stats!: LineStat[];
   #level = 1;
+
+  constructor() {
+    this.initLevel(0);
+  }
 
   initLevel(level: number) {
     this.#level = level;
@@ -98,37 +101,8 @@ export class Floors {
     return newStat;
   }
 
-  draw(gr: Graphics) {
-    gr.clear();
-
-    this.#stats.reduce((gr, line, idx) => {
-      const y = idx * GRID_HEIGHT;
-      let x1 = 0,
-        x2 = SX;
-      for (const gap of line.gaps) {
-        x2 = gap.left;
-        gr.lineStyle(1, COLOR_GRAY)
-          .moveTo(x1, y)
-          .lineTo(x2, y)
-          .moveTo(x1, y + 2)
-          .lineTo(x2, y + 2)
-          .lineStyle(1, COLOR_DARK_GRAY)
-          .moveTo(x1, y + 1)
-          .lineTo(x2, y + 1);
-        x1 = gap.right;
-        x2 = SX;
-      }
-      gr.lineStyle(1, COLOR_GRAY)
-        .moveTo(x1, y)
-        .lineTo(x2, y)
-        .moveTo(x1, y + 2)
-        .lineTo(x2, y + 2)
-        .lineStyle(1, COLOR_DARK_GRAY)
-        .moveTo(x1, y + 1)
-        .lineTo(x2, y + 1);
-
-      return gr;
-    }, gr);
+  get floors() {
+    return this.#stats;
   }
 
   canDrop(x: number, y: number) {

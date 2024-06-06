@@ -2,7 +2,7 @@ import { AssetManager, DukeTextures } from '@/game/core/assetManager';
 import { Controller } from '@/game/core/controller';
 import { Floors } from '@/game/core/floors';
 import { GRID_HEIGHT, SX } from '@/game/globals';
-import { Graphics, Texture } from 'pixi.js';
+import { Texture } from 'pixi.js';
 
 type MoveType = 'nomove' | 'jump' | 'left' | 'right' | 'falldown' | 'headhit';
 
@@ -30,7 +30,6 @@ export default class Engine {
   constructor(assetManager: AssetManager) {
     this.#assetManager = assetManager;
     this.#textures = assetManager.dukeTextures;
-    this.#floors.initLevel(this.#level);
     this.#updateDuke();
     this.#assetManager.sounds.hi.play();
   }
@@ -44,12 +43,12 @@ export default class Engine {
     this.#updateDuke();
   }
 
-  drawFloors(gr: Graphics) {
-    this.#floors.draw(gr);
-  }
-
   get level() {
     return this.#level;
+  }
+
+  get floors() {
+    return this.#floors.floors;
   }
 
   get dukeTextureInfo() {

@@ -1,4 +1,4 @@
-import { Texture, ISpritesheetData, utils, ISpritesheetFrameData } from 'pixi.js';
+import { ISpritesheetData, ISpritesheetFrameData, Texture, utils } from 'pixi.js';
 
 export function createSpriteSheet(tex: Texture, frameCount: number) {
   const frameWidth = tex.width;
@@ -6,7 +6,7 @@ export function createSpriteSheet(tex: Texture, frameCount: number) {
 
   const frameList = Array(frameCount)
     .fill(null)
-    .map((_, i) => `frame${i}`);
+    .map((_, i) => `${tex.textureCacheIds[0]}-frame${i}`);
 
   const frameSheet: ISpritesheetData = {
     meta: {

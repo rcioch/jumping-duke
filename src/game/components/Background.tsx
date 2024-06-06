@@ -4,10 +4,11 @@ import { TilingSprite } from '@pixi/react';
 
 function Background({ engine }: EngineProps) {
   const bgTextures = engine.assetManager.backgroundTextures;
+  const level = engine.level;
 
   return (
     <TilingSprite
-      texture={bgTextures[engine.level % bgTextures.length]}
+      texture={bgTextures[level % bgTextures.length]}
       width={SX}
       height={SY}
       tilePosition={{ x: 0, y: 0 }}

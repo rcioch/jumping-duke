@@ -1,5 +1,5 @@
+import { EngineProps } from '@/game/components/types';
 import { Sprite } from '@pixi/react';
-import { EngineProps } from './types';
 
 export function Duke({ engine }: EngineProps) {
   const dukeTexture = engine.dukeTextureInfo;
